@@ -2,6 +2,7 @@ import Form from "./Form";
 import Home from "./Home";
 import { useState } from "react";
 import Transactions from "./Transactions";
+import Book from "./Book";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -20,6 +21,9 @@ function App() {
             component={Transactions}
             isAuth={isAuth}
           />
+          <Route path="/book">
+            <Book />
+          </Route>
         </Switch>
       </div>
     </Router>
