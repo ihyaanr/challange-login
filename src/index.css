@@ -79,7 +79,7 @@ i:hover {
 button:disabled,
 button[disabled] {
   opacity: 10;
-  background-color: blueviolet;
+  background-color: rgba(192, 130, 253, 0.589);
   color: #fff;
 }
 
