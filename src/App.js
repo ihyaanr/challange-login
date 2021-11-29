@@ -1,13 +1,28 @@
-import Form from './Form';
-import {BrowserRouter as Route } from  'react-router-dom';
+import Form from "./Form";
+import Home from "./Home";
+import { useState } from "react";
+import Transactions from "./Transactions";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false);
   return (
-    <div className="App">
-      <Route exact>
-            <Form />
-      </Route>
-    </div>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route exact path="/">
+            <Form setIsAuth={setIsAuth} isAuth={isAuth} />
+          </Route>
+          <ProtectedRoute path="/home" component={Home} isAuth={isAuth} />
+          <ProtectedRoute
+            path="/transactions"
+            component={Transactions}
+            isAuth={isAuth}
+          />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

@@ -6,32 +6,34 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-.login{
+.login {
   width: 400px;
   margin: 0 auto;
   text-align: center;
 }
-.login h1{
+.login h1 {
   text-align: left;
 }
 
-.login label{
+.login label {
   margin-top: 20px;
   text-align: left;
   font-weight: bold;
@@ -48,7 +50,6 @@ code {
 
 .pass-wrapper {
   position: relative;
-  display: flex;
   margin-bottom: 14px;
 }
 
@@ -63,7 +64,7 @@ i:hover {
   cursor: pointer;
 }
 
-.login button{
+.login button {
   font-size: 16px;
   width: 100%;
   background-color: blueviolet;
@@ -75,11 +76,18 @@ i:hover {
   cursor: pointer;
 }
 
-.login input:focus{
+button:disabled,
+button[disabled] {
+  opacity: 10;
+  background-color: blueviolet;
+  color: #fff;
+}
+
+.login input:focus {
   border: 2px solid blueviolet;
 }
 
-.value{
+.value {
   margin-top: 50px;
   text-align: left;
 }
@@ -88,6 +96,10 @@ i:hover {
   color: green;
 }
 
-.error-color{
+.error-color {
   color: red;
+}
+
+.border-red {
+  border: 1px solid red !important;
 }
