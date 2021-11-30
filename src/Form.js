@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { Heading } from "@chakra-ui/react";
 
 const Form = ({ setIsAuth, isAuth }) => {
   const eye = <FontAwesomeIcon icon={faEye} />;
@@ -72,7 +73,9 @@ const Form = ({ setIsAuth, isAuth }) => {
       ) : (
         <p className="value success-color"> {value} </p>
       )}
-      <h1>Login</h1>
+      <Heading as="h3" size="xl" color="green.600">
+        Login
+      </Heading>
       <form onSubmit={handleLogin}>
         <label htmlFor="">Username</label>
         <input
