@@ -103,3 +103,31 @@ button[disabled] {
 .border-red {
   border: 1px solid red !important;
 }
+
+.active {
+  color: #fff;
+}
+
+.active-icon {
+  color: green !important;
+}
+
+.sidebar-item {
+  color: gray;
+  font-size: large;
+}
+
+.sidebar-item p {
+  margin-left: 1em;
+}
+
+.sidebar-item:hover p {
+  color: #fff;
+}
+
+.sidebar-item:hover svg {
+  color: green;
+}
+.sidebar-item:not(:last-child) {
+  margin-bottom: 1.5em;
+}

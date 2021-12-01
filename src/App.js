@@ -15,12 +15,20 @@ function App() {
           <Route exact path="/">
             <Form setIsAuth={setIsAuth} isAuth={isAuth} />
           </Route>
-          <ProtectedRoute path="/home" component={Home} isAuth={isAuth} />
+
+          {/* <ProtectedRoute path="/home" component={Home} isAuth={isAuth} />
           <ProtectedRoute
             path="/transactions"
             component={Transactions}
             isAuth={isAuth}
-          />
+          /> */}
+
+          <Route path="/home">
+            <Home />
+          </Route>
+          <Route path="/transactions">
+            <Transactions />
+          </Route>
           <Route path="/book">
             <Book />
           </Route>

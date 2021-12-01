@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Input } from "@chakra-ui/react";
 
 const Form = ({ setIsAuth, isAuth }) => {
   const eye = <FontAwesomeIcon icon={faEye} />;

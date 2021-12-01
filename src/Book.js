@@ -4,8 +4,14 @@ import NavBar from "./NavBar";
 
 const Book = () => {
   return (
+
     <Box textAlign="center">
       <NavBar />
+
+      <Box w="100%" mt={3} h="">
+        
+      </Box>
+
       <Heading mt={3}>Homepage</Heading>
       <Link to="/transactions">Go To Transactions</Link>
       <br />
