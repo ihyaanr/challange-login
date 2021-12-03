@@ -2,7 +2,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Heading, Input } from "@chakra-ui/react";
+import {
+  Input,
+  Center,
+  Text,
+  Button,
+  Box,
+  FormControl,
+  FormLabel,
+} from "@chakra-ui/react";
+import axios from "axios";
 
 const Form = ({ setIsAuth, isAuth }) => {
   const eye = <FontAwesomeIcon icon={faEye} />;
@@ -30,80 +39,128 @@ const Form = ({ setIsAuth, isAuth }) => {
 
     setLoading(true);
 
-    fetch("http://localhost:2223/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-      .then((res) => {
-        console.log(res);
-        // if (!res.ok) {
-        //   throw Error('could not fetch the data for that resource');
-        // }
+    axios
+      .post("http://localhost:2222/api/login", body)
+      .then((response) => {
+        console.log(response.data);
 
-        return res.json();
-      })
-      .then((res) => {
-        console.log(res);
-        if (res.error) {
-          setValue(res.massage);
-          setError(res.error);
-        } else {
-          setIsAuth(true);
-        }
+        setIsAuth(true);
       })
       .catch((e) => {
-        console.log(e);
+        console.log(e.response.data);
+        setValue(e.response.data.massage);
+        setError(e.response.data.error);
       })
       .finally(() => {
         setLoading(false);
       });
-  }
 
-  function login() {
-    console.warn(username, password);
+    // fetch("http://localhost:2222/api/login", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(body),
+    // })
+    //   .then((res) => {
+    //     console.log(res);
+    //     // if (!res.ok) {
+    //     //   throw Error('could not fetch the data for that resource');
+    //     // }
+
+    //     return res.json();
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //     if (res.error) {
+    //       setValue(res.massage);
+    //       setError(res.error);
+    //     } else {
+    //       setIsAuth(true);
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   })
+    //   .finally(() => {
+    //     setLoading(false);
+    //   });
   }
 
   return (
-    <div className="login">
-      {isError ? (
-        <p className="value error-color"> {value} </p>
-      ) : (
-        <p className="value success-color"> {value} </p>
-      )}
-      <Heading as="h3" size="xl" color="green.600">
-        Login
-      </Heading>
-      <form onSubmit={handleLogin}>
-        <label htmlFor="">Username</label>
-        <input
-          required
-          type="text"
-          placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
-          className={isError ? "border-red" : ""}
-        />
-        <label htmlFor="">Password</label>
-        <div className="pass-wrapper">
-          <input
-            required
-            type={passShow ? "text" : "password"}
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            className={isError ? "border-red" : ""}
-          />
-          <i onClick={togglePasswordVisiblity}>{eye}</i>
-        </div>
-        {!loading && (
-          <button onClick={login} disabled={username === "" || password === ""}>
-            Login
-          </button>
+    <Center minH="50vh">
+      <Box m={2} maxW="350px" w="100%">
+        {isError ? (
+          <Text fontSize="md" color="red">
+            {value}
+          </Text>
+        ) : (
+          <Text fontSize="md" color="green">
+            {value}
+          </Text>
         )}
-        {loading && <button onClick={login}>Loading...</button>}
-      </form>
-    </div>
+        <Text
+          fontWeight="bold"
+          fontSize="4xl"
+          textAlign="center"
+          color="green.600"
+        >
+          Login
+        </Text>
+        <form onSubmit={handleLogin}>
+          <FormControl marginTop="2" isInvalid={isError}>
+            <FormLabel>Username</FormLabel>
+            <Input
+              pos="relative"
+              type="text"
+              name="username"
+              placeholder="Masukan Username"
+              errorBorderColor="red.300"
+              required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </FormControl>
+
+          <FormControl marginTop="2" isInvalid={isError}>
+            <FormLabel>Password</FormLabel>
+            <Input
+              type={passShow ? "text" : "password"}
+              name="password"
+              placeholder="Masukan Password"
+              errorBorderColor="red.300"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <i onClick={togglePasswordVisiblity}>{eye}</i>
+          </FormControl>
+
+          {!loading && (
+            <Button
+              w="100%"
+              marginTop="2"
+              colorScheme="green"
+              type="submit"
+              disabled={username === "" || password === ""}
+            >
+              Login
+            </Button>
+          )}
+          {loading && (
+            <Button
+              w="100%"
+              marginTop="2"
+              isLoading
+              loadingText="Loading"
+              colorScheme="green"
+              variant="outline"
+              spinnerPlacement="start"
+            ></Button>
+          )}
+        </form>
+      </Box>
+    </Center>
   );
 };
 

@@ -8,7 +8,6 @@ import {
   Text,
   Avatar,
 } from "@chakra-ui/react";
-import NavBar from "./NavBar";
 import { FiHome, FiBook, FiDollarSign } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Chart from "chart.js/auto";

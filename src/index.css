@@ -1,4 +1,4 @@
-* {
+/* * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -51,11 +51,11 @@ code {
 .pass-wrapper {
   position: relative;
   margin-bottom: 14px;
-}
+} */
 
 i {
   position: absolute;
-  top: 30%;
+  top: 55%;
   right: 5%;
 }
 
@@ -64,6 +64,7 @@ i:hover {
   cursor: pointer;
 }
 
+/* * 
 .login button {
   font-size: 16px;
   width: 100%;
@@ -81,7 +82,7 @@ button[disabled] {
   opacity: 10;
   background-color: #c6f6d5;
   color: #fff;
-}
+}*/
 
 .login input:focus {
   border: 2px solid #2f855a;
@@ -93,7 +94,7 @@ button[disabled] {
 }
 
 .success-color {
-  color: green;
+  color: red;
 }
 
 .error-color {
