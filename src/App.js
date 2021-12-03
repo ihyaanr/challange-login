@@ -5,6 +5,7 @@ import Transactions from "./Transactions";
 import Book from "./Book";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
+import BookAdd from "./BookAdd";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/book">
             <Book />
+          </Route>
+          <Route path="/addBook">
+            <BookAdd />
           </Route>
         </Switch>
       </div>
