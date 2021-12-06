@@ -36,29 +36,29 @@ const Home = () => {
             </Heading>
             <Flex flexDir="column" align="flex-start" justifyContent="center">
               <Flex className="sidebar-item">
-                <Link>
-                  <Icon as={FiHome} fontSize="2xl" className="active-icon" />
-                </Link>
-                <Link _hover={{ textDecor: "none" }}>
-                  <Text to="" className="active">
-                    Home
-                  </Text>
-                </Link>
-              </Flex>
-              <Flex className="sidebar-item">
-                <Link>
-                  <Icon as={FiBook} fontSize="2xl" />
-                </Link>
-                <Link to="/book" _hover={{ textDecor: "none" }}>
-                  <Text>Book</Text>
+                <Link to="/book">
+                  <Flex>
+                    <Icon as={FiHome} fontSize="2xl" className="active-icon" />
+                    <Text to="" className="active">
+                      Home
+                    </Text>
+                  </Flex>
                 </Link>
               </Flex>
               <Flex className="sidebar-item">
-                <Link>
-                  <Icon as={FiDollarSign} fontSize="2xl" />
+                <Link to="/book">
+                  <Flex>
+                    <Icon as={FiBook} fontSize="2xl" />
+                    <Text>Book</Text>
+                  </Flex>
                 </Link>
-                <Link to="/transactions" _hover={{ textDecor: "none" }}>
-                  <Text>Transactions</Text>
+              </Flex>
+              <Flex className="sidebar-item">
+                <Link to="/transactions">
+                  <Flex>
+                    <Icon as={FiDollarSign} fontSize="2xl" />
+                    <Text>Transactions</Text>
+                  </Flex>
                 </Link>
               </Flex>
             </Flex>

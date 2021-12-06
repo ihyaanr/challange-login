@@ -1,8 +1,8 @@
 import { Box, Heading, Button } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const NavBar = () => {
-  const history = useHistory();
+  // const history = useHistory();
 
   return (
     <Box

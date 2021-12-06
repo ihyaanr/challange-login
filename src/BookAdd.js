@@ -8,14 +8,14 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react/cjs/react.development";
 import NavBar from "./NavBar";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const BookAdd = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("Ihya");
   const [isPending, SetIsPending] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,6 +27,7 @@ const BookAdd = () => {
       .post("http://localhost:8000/books", book)
       .then((res) => {
         console.log(res.data);
+        navigate("/book");
       })
       .catch((err) => {
         console.log(err.data);

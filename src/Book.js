@@ -28,6 +28,20 @@ const Book = () => {
     axios.get("http://localhost:8000/books").then((res) => setBooks(res.data));
   }, []);
 
+  const handleClick = (id) => {
+    if (window.confirm("Are you sure want to delete ?")) {
+      axios
+        .delete(`http://localhost:8000/books/${id}`)
+        .then((response) => {
+          console.log(response);
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   // const {data : books} = axios.get("http://localhost:8000/books")
 
   // axios.get("http://localhost:8000/books").then(function (response) {
@@ -59,73 +73,36 @@ const Book = () => {
                 </Tr>
               </Thead>
               {books &&
-                books.map((book) => (
-                  <Tbody>
+                books.map((book, i) => (
+                  <Tbody key={i}>
                     <Tr>
                       <Td>{book.title}</Td>
                       <Td>{book.author}</Td>
                       <Td isNumeric>
-                        <Link>
+                        <Link to={book.id}>
                           <Icon as={FiEdit} fontSize="2xl" />
                         </Link>
-                        <Link>
-                          <Icon as={FiTrash2} fontSize="2xl" />
+                        <Link to={book.id}>
+                          <Icon
+                            onClick={() => handleClick(book.id)}
+                            as={FiTrash2}
+                            fontSize="2xl"
+                          />
                         </Link>
                       </Td>
                     </Tr>
                   </Tbody>
                 ))}
-              {/* <Tbody>
-                <Tr>
-                  <Td>The Immortal Life of Henrietta Lacks (2010)</Td>
-                  <Td>Rebecca Skloot</Td>
-                  <Td isNumeric>
-                    <Link>
-                      <Icon as={FiEdit} fontSize="2xl" />
-                    </Link>
-                    <Link>
-                      <Icon as={FiTrash2} fontSize="2xl" />
-                    </Link>
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>The Immortal Life of Henrietta Lacks (2010)</Td>
-                  <Td>Rebecca Skloot</Td>
-                  <Td isNumeric>
-                    <Link>
-                      <Icon as={FiEdit} fontSize="2xl" />
-                    </Link>
-                    <Link>
-                      <Icon as={FiTrash2} fontSize="2xl" />
-                    </Link>
-                  </Td>
-                </Tr>
-                <Tr>
-                  <Td>The Immortal Life of Henrietta Lacks (2010)</Td>
-                  <Td>Rebecca Skloot</Td>
-                  <Td isNumeric>
-                    <Link>
-                      <Icon as={FiEdit} fontSize="2xl" />
-                    </Link>
-                    <Link>
-                      <Icon as={FiTrash2} fontSize="2xl" />
-                    </Link>
-                  </Td>
-                </Tr>
-              </Tbody> */}
             </Table>
           </Box>
         </Box>
       </Center>
-
-      <Flex>
-        <Spacer />
-        <Box mr={79}>
-          <Link to="/addBook">
-            <Button colorScheme="green">Add Book</Button>
-          </Link>
-        </Box>
-      </Flex>
+      <Spacer />
+      <Box>
+        <Link to="/addBook">
+          <Button colorScheme="green">Add Book</Button>
+        </Link>
+      </Box>
 
       <Link to="/transactions">Go To Transactions</Link>
       <br />

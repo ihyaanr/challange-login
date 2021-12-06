@@ -3,7 +3,12 @@ import Home from "./Home";
 import { useState } from "react";
 import Transactions from "./Transactions";
 import Book from "./Book";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import BookAdd from "./BookAdd";
 
@@ -12,31 +17,36 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Switch>
-          <Route exact path="/">
-            <Form setIsAuth={setIsAuth} isAuth={isAuth} />
-          </Route>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={<Form setIsAuth={setIsAuth} isAuth={isAuth} />}
+          />
 
-          {/* <ProtectedRoute path="/home" component={Home} isAuth={isAuth} />
-          <ProtectedRoute
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute isAuth={isAuth}>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
             path="/transactions"
-            component={Transactions}
-            isAuth={isAuth}
-          /> */}
+            element={
+              <ProtectedRoute isAuth={isAuth}>
+                <Transactions />
+              </ProtectedRoute>
+            }
+          />
 
-          <Route path="/home">
-            <Home />
-          </Route>
-          <Route path="/transactions">
-            <Transactions />
-          </Route>
-          <Route path="/book">
-            <Book />
-          </Route>
-          <Route path="/addBook">
-            <BookAdd />
-          </Route>
-        </Switch>
+          {/* <Route path="/home" element={<Home />} />
+          <Route path="/transactions" element={<Transactions />} /> */}
+          <Route path="/book" element={<Book />} />
+          <Route path="/addBook" element={<BookAdd />} />
+        </Routes>
       </div>
     </Router>
   );

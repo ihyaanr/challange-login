@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Input,
   Center,
@@ -21,13 +21,13 @@ const Form = ({ setIsAuth, isAuth }) => {
   const [loading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
   const [value, setValue] = useState("");
-  const history = useHistory();
+  let navigate = useNavigate();
 
   useEffect(() => {
     if (isAuth) {
-      history.push("/home");
+      navigate("/home");
     }
-  }, [isAuth]);
+  }, [isAuth, navigate]);
 
   const togglePasswordVisiblity = () => {
     setPassShow(passShow ? false : true);
@@ -43,8 +43,8 @@ const Form = ({ setIsAuth, isAuth }) => {
       .post("http://localhost:2222/api/login", body)
       .then((response) => {
         console.log(response.data);
-
         setIsAuth(true);
+        navigate("/home");
       })
       .catch((e) => {
         console.log(e.response.data);
